@@ -23,19 +23,6 @@ pipeline {
               }
           }
       }
-        stage('Build') {
-            steps {
-                echo 'Build'
-                sh "mvn --batch-mode package" 
-            }
-        }
-
-        stage('Archive Unit Tests Results') {
-            steps {
-                echo 'Archive Unit Test Results'
-               step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-*.xml'])
-            }
-        }
         
         stage('Publish Unit Test results report') {
             steps {
